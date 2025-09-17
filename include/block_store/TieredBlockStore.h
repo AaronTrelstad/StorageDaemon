@@ -14,6 +14,6 @@ public:
     bool put(const std::string& key, const std::vector<uint8_t>& data, TierHint tier);
 
 private:
-    std::vector<BlockStore*> ssds_;
-    std::vector<BlockStore*> hdds_;
+    std::vector<BlockStore*> fast_;
+    std::vector<BlockStore*> slow_;
 };
