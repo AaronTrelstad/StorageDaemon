@@ -14,7 +14,9 @@ public:
 
 private:
     TaskQueue* taskQueue_;
+    std::string loadBalancerAddress_;
 
     void handleWriteRequest(const std::string& key, const std::vector<uint8_t>& data, TierHint tier);
     void handleReadRequest(const std::string& key, std::function<void(std::vector<uint8_t>)> callback);
+    void registerWithLoadBalancer();
 };
