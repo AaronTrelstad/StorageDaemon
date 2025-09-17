@@ -2,6 +2,7 @@
 #include "MerkleNode.h"
 #include <string>
 #include <vector>
+#include <unordered_map>
 
 /*
 Merkle Tree is used for versioning, lets say a storage node fails when it restarts it could be out of date
@@ -14,7 +15,7 @@ public:
     MerkleTree(size_t capacity);
 
     void setLeaf(size_t index, const std::string& hash);
-    void remooveLeaf(size_t index);
+    void removeLeaf(size_t index);
     std::string getRootHash() const;
 
     // Given a different tree we can find differences in O(logn)
@@ -24,6 +25,6 @@ private:
     // When we update the tree we need to update parent hashes
     void recomputeUp(size_t index);
 
-    std::vector<MerkleNode> nodes_;
+    std::unordered_map<std::string, MerkleNode*> map_;
     std::mutex mutex_;
 };
